@@ -1,4 +1,4 @@
-# simotek prompt theme, by Simon Sigsimoteksson <http://github.com/simotek/>
+# simotek prompt theme, by Simon Lees <http://github.com/simotek/>
 function _simotek_theme_user --description 'Print user name'
     switch $USER
         case root
@@ -15,20 +15,6 @@ end
 function _simotek_theme_cwd --description 'Print current working directory'
     printf '%s%s%s' (set_color $fish_color_cwd) (prompt_pwd) (set_color normal)
 end
-
-#function _simotek_theme_vcs --description 'Write out the VCS prompt'
-#    set -l ___vcs (vcprompt -f '%n')
-#    if test -n "$___vc"
-#        switch $___vcs
-#            case 'git*'
-#                set -g __fish_git_prompt_color_branch 'black' '--bold'
-#                set -g __fish_git_prompt_color_merging 'red' '--bold'
-#                __fish_git_prompt ' %s'
-#            case 'hg*'
-#                printf ' %s%s%s' (set_color -o black) (vcprompt -f '%b') (set_color normal)
-#        end
-#    end
-#end
 
 function fish_prompt --description 'Write out the prompt'
    
