@@ -14,7 +14,7 @@ function fish_right_prompt --description 'Write out the right-hand prompt'
 
     # Regular Colors
     set Red (set_color red)                 # Red
-    set Yellow (set_color yellow);          # Yellow
+    set BrightYellow (set_color -o yellow); # Yellow
     set Blue (set_color blue)               # Blue
     set WHITE (set_color white)
     set Green (set_color green)
@@ -34,12 +34,11 @@ function fish_right_prompt --description 'Write out the right-hand prompt'
     # Default values for the appearance of the prompt. Configure at will.
     set GIT_PROMPT_CONFLICTS "$Red✖ "
     set GIT_PROMPT_REMOTE " "
-    set GIT_PROMPT_UNTRACKED "…"
     set GIT_PROMPT_STASHED "⚑ "
     set GIT_PROMPT_CLEAN "$BGreen✔"
     
     set GIT_PROMPT_BRANCH "$Green"
-    set GIT_PROMPT_UNTRACKED " $Yellow…$ResetColor"
+    set GIT_PROMPT_UNTRACKED " $BrightYellow…"
     set GIT_PROMPT_CHANGED "$BrightCyan✚"
     set GIT_PROMPT_STAGED "$BrightMagenta●"
   
