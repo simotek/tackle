@@ -3,6 +3,7 @@
 # If a git directory uses https://github.com/magicmonty/bash-git-prompt
 #   to display the prompt otherwise displays the date
 function fish_right_prompt --description 'Write out the right-hand prompt'
+    set -l _display_status $status    
 
     if not set -q __GIT_PROMPT_DIR
         set __GIT_PROMPT_DIR ~/src/config/bash-git-prompt
@@ -111,6 +112,6 @@ function fish_right_prompt --description 'Write out the right-hand prompt'
 
         echo -e "$PROMPT_START$STATUS$PROMPT_END"
     else
-        printf ' %s%s%s' (set_color 585858) (date) (set_color normal)
+        printf ' %s%s%s %s-%s %s%s%s' (set_color 585858) (date) (set_color normal) (set_color 444) (set_color normal)  (set_color 777) $_display_status (set_color normal)
     end
 end
