@@ -1,7 +1,9 @@
 # urdh prompt theme, by Simon Sigurdhsson <http://github.com/urdh/>
 function fish_greeting --description 'Print the shell greeting'
-    set -l c_n (set_color af0087)
-    set -l c_w (set_color green)
+    colors
+
+    set -l c_n (set_color (green))
+    set -l c_w (set_color (cyan))
 
     set -l location (printf "%sWelcome to %s%s%s" $c_n $c_w (hostname) $c_n)
     set -l system (printf "%sRunning %s%s%s on %s%s%s" $c_n $c_w (uname -mrs) $c_n $c_w (tty | sed -e 's/.*tty\(.*\)/\1/') $c_n)
