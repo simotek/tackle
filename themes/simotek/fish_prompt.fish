@@ -26,7 +26,7 @@ function fish_prompt --description 'Write out the prompt'
     set -l ___host (printf '%s%s%s' (_simotek_theme_user) $___at (_simotek_theme_hostname))
     set -l ___cwd (_simotek_theme_cwd)
     #set -l ___vcs (printf '%s%s' (_simotek_theme_vcs))
-    set -l ___prompt_char (printf '%s➤ %s' (set_color $___symbol_color) (set_color normal))
+    set -l ___prompt_char (printf '%s ➤ %s' (set_color $___symbol_color) (set_color normal))
 
     printf '%s %s%s %s' $___host $___cwd $___vcs $___prompt_char
 end
