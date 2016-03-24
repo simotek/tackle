@@ -1,3 +1,3 @@
 function oscb -d "osc build"
-  osc build --ccache --cpio-bulk-download --download-api-only $argv
+  grc osc build --ccache --cpio-bulk-download --download-api-only $argv
 end
