@@ -14,22 +14,22 @@ function fish_right_prompt --description 'Write out the right-hand prompt'
     set ResetColor (set_color normal)       # Text Reset
 
     # Regular Colors
-    set Red (set_color (red))                 # Red
-    set BrightYellow (set_color -o (yellow)); # Yellow
-    set Blue (set_color (blue))               # Blue
-    set WHITE (set_color (white))
-    set Green (set_color (green))
+    set Red '\x1b[31m'                # Red
+    set BrightYellow '\x1b[93m' # Yellow
+    set Blue '\x1b[94m'               # Blue
+    set WHITE '\x1b[97m'
+    set Green '\x1b[92m'
 
     # Bold
-    set BGreen (set_color -o (green))         # Green
+    set BGreen '\x1b[32m'         # Green
 
     # High Intensty
-    set IBlack (set_color -o (dark))         # Black
+    set IBlack '\x1b[90m'         # Black
 
     # Bold High Intensty
-    set Magenta (set_color (red))       # Purple
-    set BrightMagenta (set_color -o (purple)) # Purple
-    set BrightCyan (set_color -o (cyan))       # Purple
+    set Magenta '\x1b[91m'       # Purple
+    set BrightMagenta '\x1b[95m' # Purple
+    set BrightCyan '\x1b[96m'       # Purple
 
 
     # Default values for the appearance of the prompt. Configure at will.
@@ -43,15 +43,15 @@ function fish_right_prompt --description 'Write out the right-hand prompt'
     set GIT_PROMPT_CHANGED "$BrightCyan✚"
     set GIT_PROMPT_STAGED "$BrightMagenta●"
 
-    set GIT_PROMPT_PREFIX "$Magenta [$ResetColor"                 # start of the git info string
+    set GIT_PROMPT_PREFIX "$Magenta \x1b[40m["                 # start of the git info string
     set GIT_PROMPT_SUFFIX "$Magenta]$ResetColor"                 # the end of the git info string
-    set GIT_PROMPT_SEPARATOR "$Magenta|$ResetColor"              # separates each item
+    set GIT_PROMPT_SEPARATOR "$Magenta|"              # separates each item
 
 
     if git rev-parse --is-inside-work-tree > /dev/null ^ /dev/null
 
-        # These are blank for the right hand prompt
-        set PROMPT_START ""
+  # These are blank for the right hand prompt
+  set PROMPT_START ""
 	set PROMPT_END ""
 
 	set -e __CURRENT_GIT_STATUS
@@ -76,42 +76,42 @@ function fish_right_prompt --description 'Write out the right-hand prompt'
 	    set GIT_CLEAN $__CURRENT_GIT_STATUS[8]
 	end
 
-        set STATUS " $GIT_PROMPT_PREFIX$GIT_PROMPT_BRANCH$GIT_BRANCH$ResetColor"
+        set STATUS " $GIT_PROMPT_PREFIX$GIT_PROMPT_BRANCH$GIT_BRANCH$WHITE"
 
         if set -q GIT_REMOTE
-            set STATUS "$STATUS$GIT_PROMPT_REMOTE$GIT_REMOTE$ResetColor"
+            set STATUS "$STATUS$GIT_PROMPT_REMOTE$GIT_REMOTE"
         end
 
         set STATUS "$STATUS$GIT_PROMPT_SEPARATOR"
 
         if [ "$GIT_STAGED" != "0" ]
-            set STATUS "$STATUS$GIT_PROMPT_STAGED$GIT_STAGED$ResetColor"
+            set STATUS "$STATUS$GIT_PROMPT_STAGED$GIT_STAGED"
         end
 
         if [ "$GIT_CONFLICTS" != "0" ]
-            set STATUS "$STATUS$GIT_PROMPT_CONFLICTS$GIT_CONFLICTS$ResetColor"
+            set STATUS "$STATUS$GIT_PROMPT_CONFLICTS$GIT_CONFLICTS"
         end
 
         if [ "$GIT_CHANGED" != "0" ]
-            set STATUS "$STATUS$GIT_PROMPT_CHANGED$GIT_CHANGED$ResetColor"
+            set STATUS "$STATUS$GIT_PROMPT_CHANGED$GIT_CHANGED"
         end
 
         if [ "$GIT_UNTRACKED" != "0" ]
-            set STATUS "$STATUS$GIT_PROMPT_UNTRACKED$GIT_UNTRACKED$ResetColor"
+            set STATUS "$STATUS$GIT_PROMPT_UNTRACKED$GIT_UNTRACKED"
         end
 
         if [ "$GIT_STASHED" != "0" ]
-            set STATUS "$STATUS$GIT_PROMPT_STASHED$GIT_STASHED$ResetColor"
+            set STATUS "$STATUS$GIT_PROMPT_STASHED$GIT_STASHED"
         end
 
         if [ "$GIT_CLEAN" = "1" ]
             set STATUS "$STATUS$GIT_PROMPT_CLEAN"
         end
 
-        set STATUS "$STATUS$ResetColor$GIT_PROMPT_SUFFIX"
+        set STATUS "$STATUS$GIT_PROMPT_SUFFIX"
 
         echo -e "$PROMPT_START$STATUS$PROMPT_END"
     else
-        printf ' %s%s%s %s-%s %s%s%s' (set_color (offwhite_alt)) (date) (set_color normal) (set_color (offwhite)) (set_color normal)  (set_color 777) $_display_status (set_color normal)
+        printf ' \x1b[40m\x1b[91m[%s%s\x1b[91m|%s%s\x1b[91m]%s' (set_color (offwhite_alt)) (date) (set_color 777) $_display_status (set_color normal)
     end
 end
