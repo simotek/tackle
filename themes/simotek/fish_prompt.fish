@@ -13,7 +13,13 @@ function _simotek_theme_hostname --description 'Print the hostname'
 end
 
 function _simotek_theme_cwd --description 'Print current working directory'
-    printf '\x1b[95m%s' (prompt_pwd)
+    set -l prompt_pwd_local (prompt_pwd)
+    set -l char_1 (string sub -s 1 -l 1 $prompt_pwd_local)
+    if test "$char_1" = "~"
+        printf '\x1b[95m%s' (prompt_pwd)
+    else  
+        echo -e '\x1b[33m%s' (prompt_pwd)
+    end
 end
 
 function fish_prompt --description 'Write out the prompt'
