@@ -18,7 +18,7 @@ function _simotek_theme_cwd --description 'Print current working directory'
     if test "$char_1" = "~"
         printf '\x1b[95m%s' (prompt_pwd)
     else  
-        echo -e '\x1b[33m%s' (prompt_pwd)
+        printf '\x1b[33m%s' (prompt_pwd)
     end
 end
 
