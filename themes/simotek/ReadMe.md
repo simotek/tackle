@@ -1,7 +1,9 @@
-# urdh
+# simotek
 
-urdh provides a pretty simple prompt, with support [Git][] and [Mercurial][].
+A theme by simotek who is really inventive with naming things provides a pretty simple prompt, with support [Git][] and [Quilt][].
+This theme will also override the colors defined by fish_config with those set in the terminal emulator, to disable this behaviour rename fish_colors.env to fish_colors.env.dis
 
+# Old readme to be updated
 ![urdh prompt screenshot][screenshot]
 
 ## Requirements
