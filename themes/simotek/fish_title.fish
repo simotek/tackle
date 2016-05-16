@@ -1,4 +1,4 @@
-# urdh prompt theme, by Simon Sigurdhsson <http://github.com/urdh/>
+# simotek prompt theme, by Simon Lees <http://github.com/simotek/>
 function fish_title --description 'Set terminal title'
     if set -q fish_title_disabled
         return
