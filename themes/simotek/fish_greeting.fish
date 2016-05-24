@@ -2,14 +2,10 @@
 function fish_greeting --description 'Print the shell greeting'
     colors
 
-    set -l c_n '\x1b[94m'
-    set -l c_w '\x1b[93m'
-
-    set -l location (printf "\x1b[94mWelcome to \x1b[95m%s" (hostname))
-    set -l system (printf "\x1b[94mRunning \x1b[95m%s\x1b[94m on \x1b[95m%s" (uname -mrs) (tty | sed -e 's/.*tty\(.*\)/\1/'))
-    set -l datetime (printf "\x1b[94mIt is \x1b[95m%s\x1b[94m (%s) on \x1b[95m%s" (date +%T) (date +%Z) (date +%F))
+    set -l location (printf "%sWelcome to %s%s" $smtk_clr_blue_h $smtk_clr_purple_h (hostname))
+    set -l system (printf "%sRunning %s%s%s on %s%s"  $smtk_clr_blue_h $smtk_clr_purple_h (uname -mrs)  $smtk_clr_blue_h $smtk_clr_purple_h (tty | sed -e 's/.*tty\(.*\)/\1/'))
+    set -l datetime (printf "%sIt is %s%s%s (%s) on %s%s"  $smtk_clr_blue_h $smtk_clr_purple_h (date +%T)  $smtk_clr_blue_h (date +%Z) $smtk_clr_purple_h (date +%F))
 
     printf "\n  %s\n  %s\n  %s\n\n" $location $system $datetime
-    
     
 end
