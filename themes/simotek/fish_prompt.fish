@@ -24,6 +24,8 @@ end
 
 function fish_prompt --description 'Write out the prompt'
 
+    __tacklebox_load_env_file "$tacklebox_path/themes/simotek/simotek_theme_colors.en"
+
     set -l __left_arrow_glyph        \uE0B0
 
     # print the prompt
@@ -34,4 +36,6 @@ function fish_prompt --description 'Write out the prompt'
     set -l ___prompt_char (printf "$smtk_clr_red_hb ➤ %s$smtk_clr_black%s%s "  (set_color normal) $__left_arrow_glyph (set_color normal))
 
     printf "$smtk_clr_back%s %s%s %s" $___host $___cwd $___vcs $___prompt_char
+    echo 
+    __tacklebox_unload_env_file simotek_theme_colors.en
 end
