@@ -24,7 +24,7 @@ function fish_right_prompt --description 'Write out the right-hand prompt'
 
     set GIT_PROMPT_BRANCH "$smtk_clr_green_hb"
     set GIT_PROMPT_UNTRACKED " $smtk_clr_yellow_hb…"
-    set GIT_PROMPT_CHANGED "$smtk_clr_cyan_hb✚"s
+    set GIT_PROMPT_CHANGED "$smtk_clr_cyan_hb✚"
     set GIT_PROMPT_STAGED "$smtk_clr_purple_hb●"
 
     # This doesn't use a env var in order to not conflict with the following bracket
