@@ -3,6 +3,9 @@
 # If a git directory uses https://github.com/magicmonty/bash-git-prompt
 #   to display the prompt otherwise displays the date
 function fish_right_prompt --description 'Write out the right-hand prompt'
+    
+    __tacklebox_load_env_file "$tacklebox_path/themes/simotek/simotek_theme_colors.en"
+    
     set -l _display_status $status
 
     if not set -q __GIT_PROMPT_DIR
@@ -13,39 +16,21 @@ function fish_right_prompt --description 'Write out the right-hand prompt'
     # Reset
     set ResetColor (set_color normal)       # Text Reset
 
-    # Regular Colors
-    set Red '\x1b[31m'                # Red
-    set BrightYellow '\x1b[93m' # Yellow
-    set Blue '\x1b[94m'               # Blue
-    set WHITE '\x1b[97m'
-    set Green '\x1b[92m'
-
-    # Bold
-    set BGreen '\x1b[32m'         # Green
-
-    # High Intensty
-    set IBlack '\x1b[90m'         # Black
-
-    # Bold High Intensty
-    set Magenta '\x1b[91m'       # Purple
-    set BrightMagenta '\x1b[95m' # Purple
-    set BrightCyan '\x1b[96m'       # Purple
-
-
     # Default values for the appearance of the prompt. Configure at will.
-    set GIT_PROMPT_CONFLICTS "$Red✖ "
+    set GIT_PROMPT_CONFLICTS "$smtk_clr_red_b✖ "
     set GIT_PROMPT_REMOTE " "
     set GIT_PROMPT_STASHED "⚑ "
-    set GIT_PROMPT_CLEAN "$BGreen✔"
+    set GIT_PROMPT_CLEAN "$smtk_clr_green_hb✔"
 
-    set GIT_PROMPT_BRANCH "$Green"
-    set GIT_PROMPT_UNTRACKED " $BrightYellow…"
-    set GIT_PROMPT_CHANGED "$BrightCyan✚"
-    set GIT_PROMPT_STAGED "$BrightMagenta●"
+    set GIT_PROMPT_BRANCH "$smtk_clr_green_hb"
+    set GIT_PROMPT_UNTRACKED " $smtk_clr_yellow_hb…"
+    set GIT_PROMPT_CHANGED "$smtk_clr_cyan_hb✚"s
+    set GIT_PROMPT_STAGED "$smtk_clr_purple_hb●"
 
-    set GIT_PROMPT_PREFIX "$Magenta \x1b[40m["                 # start of the git info string
-    set GIT_PROMPT_SUFFIX "$Magenta]$ResetColor"                 # the end of the git info string
-    set GIT_PROMPT_SEPARATOR "$Magenta|"              # separates each item
+    # This doesn't use a env var in order to not conflict with the following bracket
+    set GIT_PROMPT_PREFIX " \e[0;31;40m["                 # start of the git info string
+    set GIT_PROMPT_SUFFIX "$smtk_clr_red_b]$ResetColor"                 # the end of the git info string
+    set GIT_PROMPT_SEPARATOR "$smtk_clr_red_b|"              # separates each item
 
 
     if git rev-parse --is-inside-work-tree > /dev/null ^ /dev/null
@@ -76,7 +61,7 @@ function fish_right_prompt --description 'Write out the right-hand prompt'
     	    set GIT_CLEAN $__CURRENT_GIT_STATUS[8]
     	end
 
-        set STATUS " $GIT_PROMPT_PREFIX$GIT_PROMPT_BRANCH$GIT_BRANCH$WHITE"
+        set STATUS " $GIT_PROMPT_PREFIX$GIT_PROMPT_BRANCH$GIT_BRANCH$smtk_clr_white_b"
 
         if set -q GIT_REMOTE
             set STATUS "$STATUS$GIT_PROMPT_REMOTE$GIT_REMOTE"
@@ -115,18 +100,21 @@ function fish_right_prompt --description 'Write out the right-hand prompt'
         # Get current patch name 
         if test -r "$PWD/.pc/applied-patches"
             set -l __tmp (tail -1 .pc/applied-patches)
-            set __quilt_current_patch_name (echo -e "\x1b[92m$__tmp")
+            set __quilt_current_patch_name (echo -e "$smtk_clr_green_hb$__tmp")
             set __quilt_current_patch_number (cat .pc/applied-patches | wc -l)
         else
-            set __quilt_current_patch_name (echo -e "\x1b[33mNo patches applied")
+            set __quilt_current_patch_name (printf "$smtk_clr_yellow_b%s" "No patches applied")
             set __quilt_current_patch_number "0"
         end
         
         set -l __file_count (cat series | wc -l)
         # There is 4 lines of comments at the start of the file
         set -l __patch_count (echo "$__file_count-4" | bc)
-        printf '\x1b[40m\x1b[91m[%s\x1b[91m|\x1b[34m%s\x1b[33m/\x1b[92m%s\x1b[91m]%s' $__quilt_current_patch_name $__quilt_current_patch_number $__patch_count (set_color normal)
+        printf "\x1b[40m\x1b[91m[%s$smtk_clr_red_hb|$smtk_clr_blue_b%s$smtk_clr_yellow_b/$smtk_clr_green_hb%s$smtk_clr_red_hb]%s" $__quilt_current_patch_name $__quilt_current_patch_number $__patch_count (set_color normal)
     else
-        printf ' \x1b[40m\x1b[91m[%s%s\x1b[91m|%s%s\x1b[91m]%s' (set_color (offwhite_alt)) (date) (set_color 777) $_display_status (set_color normal)
+        printf " \x1b[40m\x1b[91m[%s%s$smtk_clr_red_hb|%s%s$smtk_clr_red_hb]%s" (set_color (offwhite_alt)) (date) (set_color 777) $_display_status (set_color normal)
     end
+    
+    __tacklebox_unload_env_file "$tacklebox_path/themes/simotek/simotek_theme_colors.en"
+
 end
