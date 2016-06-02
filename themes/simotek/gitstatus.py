@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
 
-## Embedded from https://github.com/magicmonty/bash-git-prompt LICENSE.gitstatus-py.txt
-
 """This module defines a Print function to use with python 2.x or 3.x., so we can use the prompt with older versions of
 Python too
 
@@ -138,4 +136,4 @@ out = '\n'.join([
     str(stashed),
     str(clean)
 ])
-Print(out)
+Print(out.encode('utf-8'))
