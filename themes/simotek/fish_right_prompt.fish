@@ -40,7 +40,7 @@ function fish_right_prompt --description 'Write out the right-hand prompt'
     	set PROMPT_END ""
 
     	set -e __CURRENT_GIT_STATUS
-    	set gitstatus "$__GIT_PROMPT_DIR/gitstatus.py"
+    	set gitstatus "gitstatus.py"
 
     	set _GIT_STATUS (python $gitstatus)
     	set __CURRENT_GIT_STATUS $_GIT_STATUS
