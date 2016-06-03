@@ -8,10 +8,6 @@ function fish_right_prompt --description 'Write out the right-hand prompt'
     
     set -l _display_status $status
 
-    if not set -q __GIT_PROMPT_DIR
-        set __GIT_PROMPT_DIR ~/src/config/bash-git-prompt
-    end
-
     # Colors
     # Reset
     set ResetColor (set_color normal)       # Text Reset
@@ -40,7 +36,7 @@ function fish_right_prompt --description 'Write out the right-hand prompt'
     	set PROMPT_END ""
 
     	set -e __CURRENT_GIT_STATUS
-    	set gitstatus "gitstatus.py"
+    	set gitstatus "$tacklebox_path/themes/simotek/gitstatus.py"
 
     	set _GIT_STATUS (python $gitstatus)
     	set __CURRENT_GIT_STATUS $_GIT_STATUS
