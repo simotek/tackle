@@ -108,7 +108,7 @@ function fish_right_prompt --description 'Write out the right-hand prompt'
         set -l __patch_count (echo "$__file_count-4" | bc)
         printf "\x1b[40m\x1b[91m[%s$smtk_clr_red_hb|$smtk_clr_blue_b%s$smtk_clr_yellow_b/$smtk_clr_green_hb%s$smtk_clr_red_hb]%s" $__quilt_current_patch_name $__quilt_current_patch_number $__patch_count (set_color normal)
     else
-        printf " \x1b[40m\x1b[91m[%s%s$smtk_clr_red_hb|%s%s$smtk_clr_red_hb]%s" (set_color (offwhite_alt)) (date) (set_color 777) $_display_status (set_color normal)
+        printf " \x1b[40m\x1b[91m[%s%s$smtk_clr_red_hb|%s%s$smtk_clr_red_hb]%s" (set_color "#7F8C8D") (date) (set_color 777) $_display_status (set_color normal)
     end
     
     __tacklebox_unload_env_file "$tacklebox_path/themes/simotek/simotek_theme_colors.en"
