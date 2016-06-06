@@ -1,3 +1,16 @@
+# Simotek - Theme
+(NO i'm not good at picking original names.)
+
+## Features
+  * Git Integration
+  * Uses Native color escapes rather then hardcoding to match the rest of your terminal more below
+  * Supports displaying different usernames and hostnames with different colors 
+
+## Config
+
+## TBD
+  * Put my sample color codes here
+
 # urdh
 
 urdh provides a pretty simple prompt, with support [Git][] and [Mercurial][].
