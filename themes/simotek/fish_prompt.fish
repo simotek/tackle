@@ -1,15 +1,31 @@
 # simotek prompt theme, by Simon Lees <http://github.com/simotek/>
 function _simotek_theme_user --description 'Print user name'
     switch $USER
-        case root
+        case "*$smtk_user_1*"
+            printf "$smtk_clr_green_hb%s" $USER
+        case "*$smtk_user_2*"
+            printf "$smtk_clr_cyan_hb%s" $USER
+        case "*$smtk_user_3*"
             printf "$smtk_clr_red_hb%s" $USER
         case '*'
-            printf "$smtk_clr_green_hb%s" $USER
+            printf "$smtk_clr_yellow_b%s" $USER
     end
 end
 
 function _simotek_theme_hostname --description 'Print the hostname'
-    printf "$smtk_clr_blue_hb%s" (hostname|cut -d . -f 1)
+    set -l __host_pretty (hostname|cut -d . -f 1)
+    switch $__host_pretty
+        case "*$smtk_host_1*"
+            printf "$smtk_clr_blue_hb%s" $__host_pretty
+        case "*$smtk_host_2*"
+            printf "$smtk_clr_cyan_hb%s" $__host_pretty
+        case "*$smtk_host_3*"
+            printf "$smtk_clr_green_hb%s" $__host_pretty
+        case "*$smtk_host_4*"
+            printf "$smtk_clr_purple_hb%s" $__host_pretty
+        case '*'
+            printf "$smtk_clr_yellow_b%s" $__host_pretty
+    end
 end
 
 function _simotek_theme_cwd --description 'Print current working directory'
@@ -25,6 +41,7 @@ end
 function fish_prompt --description 'Write out the prompt'
 
     __tacklebox_load_env_file "$tacklebox_path/themes/simotek/simotek_theme_colors.en"
+    __tacklebox_load_env_file "$tacklebox_path/themes/simotek/simotek_theme.conf"
 
     set -l __left_arrow_glyph        \uE0B0
 
@@ -36,6 +53,7 @@ function fish_prompt --description 'Write out the prompt'
     set -l ___prompt_char (printf "$smtk_clr_red_hb ➤ %s$smtk_clr_black%s%s "  (set_color normal) $__left_arrow_glyph (set_color normal))
 
     printf "$smtk_clr_back%s %s%s %s" $___host $___cwd $___vcs $___prompt_char
-    echo 
-    __tacklebox_unload_env_file simotek_theme_colors.en
+
+    __tacklebox_load_env_file "$tacklebox_path/themes/simotek/simotek_theme.conf"
+    __tacklebox_unload_env_file "$tacklebox_path/themes/simotek/simotek_theme_colors.en"
 end
