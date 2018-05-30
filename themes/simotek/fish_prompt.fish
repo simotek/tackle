@@ -6,6 +6,8 @@ function _simotek_theme_user --description 'Print user name'
         case "*$smtk_user_2*"
             printf "$smtk_clr_cyan_hb%s" $USER
         case "*$smtk_user_3*"
+            printf "$smtk_clr_purple_hb%s" $USER
+        case "*$smtk_user_4*"
             printf "$smtk_clr_red_hb%s" $USER
         case '*'
             printf "$smtk_clr_yellow_b%s" $USER
@@ -23,6 +25,8 @@ function _simotek_theme_hostname --description 'Print the hostname'
             printf "$smtk_clr_green_hb%s" $__host_pretty
         case "*$smtk_host_4*"
             printf "$smtk_clr_purple_hb%s" $__host_pretty
+        case "*$smtk_host_5*"
+            printf "$smtk_clr_yellow%s" $__host_pretty
         case '*'
             printf "$smtk_clr_yellow_b%s" $__host_pretty
     end
