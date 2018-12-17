@@ -26,9 +26,16 @@ function _simotek_theme_hostname --description 'Print the hostname'
         case "*$smtk_host_4*"
             printf "$smtk_clr_purple_hb%s" $__host_pretty
         case "*$smtk_host_5*"
-            printf "$smtk_clr_yellow%s" $__host_pretty
+            printf "$smtk_clr_yellow_hb%s" $__host_pretty
+        case "linux-*"
+            set ip (hostname -i | cut -d ' ' -f1)
+            if test -n "$ip"
+                printf "$smtk_clr_purple_hb%s" $ip
+            else
+                printf "$smtk_clr_red_hb%s" $__host_pretty
+            end
         case '*'
-            printf "$smtk_clr_yellow_b%s" $__host_pretty
+            printf "$smtk_clr_red_hb%s" $__host_pretty
     end
 end
 
@@ -37,7 +44,7 @@ function _simotek_theme_cwd --description 'Print current working directory'
     set -l char_1 (string sub -s 1 -l 1 $prompt_pwd_local)
     if test "$char_1" = "~"
         printf "$smtk_clr_purple_hb%s" (prompt_pwd)
-    else  
+    else
         printf "$smtk_clr_yellow_b%s" (prompt_pwd)
     end
 end
