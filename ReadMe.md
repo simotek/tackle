@@ -4,6 +4,11 @@ Tackle is a repository of [fish shell][] functions, modules, plugins, and themes
 
 Visit the [Tacklebox][] project for information on installation, usage, and other useful documentation.
 
+## Changes from upstream
+This version has a couple of extra plugins, as well as the ability to load environment variables, you may want to edit environment/default.env, Ctrl + S will also prepend sudo to the current line.
+
+It also ships the [simotek theme][] which is different in the fish world because it sticks to using the color palette from the terminal emulator rather then fish's, you can find out more info about it in the [simotek theme][] ReadMe.md
+
 ### Modules
 
 - **virtualfish** — [Virtualfish][] facilitates [virtualenv][] management and matches projects to virtual environments
@@ -42,6 +47,7 @@ Contributions to both Tackle and [Tacklebox][] are welcomed. If you'd like to co
 [grc]: http://korpus.juls.savba.sk/~garabik/software/grc.html
 [Mercurial]: http://mercurial.selenic.com/
 [pip]: http://pip.readthedocs.org/
+[simotek theme]: https://github.com/simotek/tackle/tree/master/themes/simotek
 [Tacklebox]: https://github.com/justinmayer/tacklebox
 [virtualenv]: http://virtualenv.readthedocs.org/
 [Virtualfish]: https://github.com/adambrenecki/virtualfish
