@@ -9,6 +9,9 @@ This version has a couple of extra plugins, as well as the ability to load envir
 
 It also ships the [simotek theme][] which is different in the fish world because it sticks to using the color palette from the terminal emulator rather then fish's, you can find out more info about it in the [simotek theme][] ReadMe.md
 
+![Default](themes/simotek/screenshots/default.png)
+
+
 ## Customization
 
 Can't find a plugin that does what you want? Prefer to create your own theme? Tacklebox includes locations for you to store your own customized modules, plugins, environment, functions and themes.
@@ -62,6 +65,13 @@ These are helper functions, mainly to be used inside of configuration and other 
 ## Contributing
 
 Contributions to both Tackle and [Tacklebox][] are welcomed. I will accept contributions here (and forward them to [Justin Mayer][]'s repo), I will also semi regularly cherry pick any changes into [Justin Mayer][]'s repo's. If you'd like to contribute to the project, please review the [contributing guidelines][] thoroughly.
+
+## Screenshots
+![Default](themes/simotek/screenshots/default.png)
+![Default Light](themes/simotek/screenshots/default-light.png)
+![Solarized](themes/simotek/screenshots/solarized.png)
+![Solarized Light](themes/simotek/screenshots/solarized-light.png)
+
 
 [contributing guidelines]: https://github.com/justinmayer/tackle/blob/master/Contributing.md
 [docker]: http://www.docker.com/
