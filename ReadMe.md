@@ -9,6 +9,20 @@ This version has a couple of extra plugins, as well as the ability to load envir
 
 It also ships the [simotek theme][] which is different in the fish world because it sticks to using the color palette from the terminal emulator rather then fish's, you can find out more info about it in the [simotek theme][] ReadMe.md
 
+## Customization
+
+Can't find a plugin that does what you want? Prefer to create your own theme? Tacklebox includes locations for you to store your own customized modules, plugins, environment, functions and themes.
+
+* `.../tackle/environment/`
+* `.../tackle/functions/`
+* `.../tackle/modules/`
+* `.../tackle/plugins/`
+* `.../tackle/themes/`
+
+As a special case customized keybindings need to be added to `.../tackle/functions/fish_user_key_bindings`
+
+Remember that adding your custom components at the above locations isn't sufficient — you must enable them by including them in your `tacklebox_modules`, `tacklebox_plugins`, and/or `tacklebox_theme` settings, in addition to including `.../tackle` itself in your `tacklebox_path` setting.
+
 ### Modules
 
 - **virtualfish** — [Virtualfish][] facilitates [virtualenv][] management and matches projects to virtual environments
