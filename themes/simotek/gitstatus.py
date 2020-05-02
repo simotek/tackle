@@ -44,21 +44,21 @@ except SyntaxError:
 def get_tag_or_hash():
     cmd = Popen(['git', 'describe', '--exact-match'], stdout=PIPE, stderr=PIPE)
     so, se = cmd.communicate()
-    tag = '%s' % so.decode('utf-8').strip()
+    tag = '%s' % so.strip()
 
     if tag:
         return tag
     else:
         cmd = Popen(['git', 'rev-parse', '--short', 'HEAD'], stdout=PIPE, stderr=PIPE)
         so, se = cmd.communicate()
-        hash_name = '%s' % so.decode('utf-8').strip()
+        hash_name = '%s' % so.strip()
         return ''.join([symbols['prehash'], hash_name])
 
 
 def get_stash():
     cmd = Popen(['git', 'rev-parse', '--git-dir'], stdout=PIPE, stderr=PIPE)
     so, se = cmd.communicate()
-    stash_file = '%s%s' % (so.decode('utf-8').rstrip(), '/logs/refs/stash')
+    stash_file = '%s%s' % (so.rstrip(), '/logs/refs/stash')
 
     try:
         with open(stash_file) as f:
@@ -128,7 +128,7 @@ if remote == "":
 
 out = '\n'.join([
     branch,
-    remote.decode('utf-8'),
+    remote,
     str(len(staged)),
     str(len(conflicts)),
     str(len(changed)),
@@ -136,4 +136,4 @@ out = '\n'.join([
     str(stashed),
     str(clean)
 ])
-Print(out.encode('utf-8'))
+Print(out)

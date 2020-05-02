@@ -3,9 +3,9 @@
 # If a git directory uses https://github.com/magicmonty/bash-git-prompt
 #   to display the prompt otherwise displays the date
 function fish_right_prompt --description 'Write out the right-hand prompt'
-    
+
     __tacklebox_load_env_file "$tacklebox_path/themes/simotek/simotek_theme_colors.en"
-    
+
     set -l _display_status $status
 
     # Colors
@@ -38,7 +38,7 @@ function fish_right_prompt --description 'Write out the right-hand prompt'
     	set -e __CURRENT_GIT_STATUS
     	set gitstatus "$tacklebox_path/themes/simotek/gitstatus.py"
 
-    	set _GIT_STATUS (python $gitstatus)
+    	set _GIT_STATUS (python3 $gitstatus)
     	set __CURRENT_GIT_STATUS $_GIT_STATUS
 
     	set __CURRENT_GIT_STATUS_PARAM_COUNT (count $__CURRENT_GIT_STATUS)
@@ -93,7 +93,7 @@ function fish_right_prompt --description 'Write out the right-hand prompt'
 
         echo -e "$PROMPT_START$STATUS$PROMPT_END"
     else if test -r "$PWD/series" -a -d "$PWD/.pc/"
-        # Get current patch name 
+        # Get current patch name
         if test -r "$PWD/.pc/applied-patches"
             set -l __tmp (tail -1 .pc/applied-patches)
             set __quilt_current_patch_name (echo -e "$smtk_clr_green_hb$__tmp")
@@ -102,7 +102,7 @@ function fish_right_prompt --description 'Write out the right-hand prompt'
             set __quilt_current_patch_name (printf "$smtk_clr_yellow_b%s" "No patches applied")
             set __quilt_current_patch_number "0"
         end
-        
+
         set -l __file_count (cat series | wc -l)
         # There is 4 lines of comments at the start of the file
         set -l __patch_count (echo "$__file_count-4" | bc)
@@ -110,7 +110,7 @@ function fish_right_prompt --description 'Write out the right-hand prompt'
     else
         printf " \x1b[40m\x1b[91m[%s%s$smtk_clr_red_hb|%s%s$smtk_clr_red_hb]%s" (set_color "#7F8C8D") (date) (set_color 777) $_display_status (set_color normal)
     end
-    
+
     __tacklebox_unload_env_file "$tacklebox_path/themes/simotek/simotek_theme_colors.en"
 
 end
