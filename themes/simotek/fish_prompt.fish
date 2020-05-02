@@ -39,6 +39,15 @@ function _simotek_theme_hostname --description 'Print the hostname'
     end
 end
 
+function _simotek_theme_ssh --description 'Print if sshd'
+
+    if test -n "$SSH_TTY"
+        printf "$smtk_clr_red_hb($smtk_clr_green_hb%s$smtk_clr_red_hb)" (echo "ssh")
+    else
+        printf ""
+    end
+end
+
 function _simotek_theme_cwd --description 'Print current working directory'
     set -l prompt_pwd_local (prompt_pwd)
     set -l char_1 (string sub -s 1 -l 1 $prompt_pwd_local)
@@ -58,7 +67,7 @@ function fish_prompt --description 'Write out the prompt'
 
     # print the prompt
     set -l ___at (printf "$smtk_clr_red_hb@")
-    set -l ___host (printf '%s%s%s' (_simotek_theme_user) $___at (_simotek_theme_hostname))
+    set -l ___host (printf '%s%s%s%s' (_simotek_theme_user) $___at (_simotek_theme_hostname) (_simotek_theme_ssh))
     set -l ___cwd (_simotek_theme_cwd)
     #set -l ___vcs (printf '%s%s' (_simotek_theme_vcs))
     set -l ___prompt_char (printf "$smtk_clr_red_hb ➤ %s$smtk_clr_black%s%s "  (set_color normal) $__left_arrow_glyph (set_color normal))
