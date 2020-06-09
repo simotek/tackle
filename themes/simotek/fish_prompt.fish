@@ -28,7 +28,7 @@ function _simotek_theme_hostname --description 'Print the hostname'
         case "*$smtk_host_5*"
             printf "$smtk_clr_yellow_hb%s" $__host_pretty
         case "linux-*"
-            set ip (hostname -i | cut -d ' ' -f1)
+            set ip (hostname -I | cut -d ' ' -f1)
             if test -n "$ip"
                 printf "$smtk_clr_purple_hb%s" $ip
             else
